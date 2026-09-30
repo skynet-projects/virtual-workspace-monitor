@@ -54,10 +54,12 @@ Network: HTTPS (443) from the monitor to your Connection Servers and vCenter; HT
 
 1. Download the zip from [Releases](../../releases).
 2. Extract it somewhere, e.g. `C:\Virtual-Workspace-Monitor\`.
-3. Run the exe. A console window shows the URL, something like `http://192.168.1.10:8383`.
+3. Run `HorizonMonitor.exe`. A console window shows the URL, something like `http://192.168.1.10:8383`.
 4. Open that URL. The setup wizard asks for your Connection Server, the Horizon account and your first admin login. Everything else is optional and lives under Settings.
 
 Keep the console window open (minimised is fine). Closing it stops the monitor.
+
+The full manual — setup wizard, every tab, alerts, technical notes — is [here](https://skynet-projects.github.io/virtual-workspace-monitor/Virtual-Workspace-Monitor-Manual.html) (also included in every release zip).
 
 **Updating:** stop, replace the files from the new zip, start again. Config and history stay where they are. Settings > Changelog shows what changed.
 
@@ -87,7 +89,7 @@ Worth being explicit about, because a tool like this sees a lot.
 | Changelog | Release notes of the running version |
 | System Health | Background loops, log files, support export |
 
-Port, CORS origins and history retention are in `config.json`.
+Port, CORS origins and history retention are in `config.json`; the manual has the details.
 
 ## When something doesn't work
 
