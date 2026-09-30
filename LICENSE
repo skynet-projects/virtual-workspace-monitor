@@ -1,23 +1,64 @@
-Virtual Workspace Monitor — License
-
+Virtual Workspace Monitor — Freeware License
 Copyright (c) 2026 Pascal Rijzinga. All rights reserved.
 
-Permission is granted to download and use this software free of charge,
-for personal and commercial purposes, in unmodified form only.
+1. Definitions
+   "Software" means the Virtual Workspace Monitor binaries, accompanying files
+   and documentation as published by the copyright holder on GitHub Releases.
+   "You" means the individual or organisation using the Software.
 
-You may NOT:
-  - sell, rent, lease, sublicense or otherwise commercially exploit the software;
-  - redistribute the software, in whole or in part, in any form;
-  - modify, adapt, translate, reverse engineer, decompile or disassemble
-    the software, or create derivative works based on it;
-  - remove or alter this notice or any copyright, trademark or other
-    proprietary notice.
+2. Grant of license
+   Subject to the terms of this license, the copyright holder grants You a
+   non-exclusive, non-transferable, royalty-free right to download, install
+   and use the Software, for personal and commercial purposes, on any number
+   of systems within Your own organisation.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM THE
-USE OF OR INABILITY TO USE THE SOFTWARE.
+3. Restrictions
+   You may not:
+   a) sell, rent, lease, sublicense or otherwise commercially exploit the
+      Software, or charge others for access to it;
+   b) redistribute the Software, in whole or in part, other than by linking
+      to the official GitHub repository or Releases page;
+   c) modify, adapt, translate or create derivative works of the Software;
+   d) reverse engineer, decompile, disassemble or otherwise attempt to
+      derive the source code of the Software, except to the extent that
+      applicable law expressly permits this despite this restriction;
+   e) remove or alter any copyright, trademark or license notice.
 
-Omnissa, Horizon, VMware and vSphere are trademarks of their respective
-owners. This software is not affiliated with or endorsed by Omnissa or Broadcom.
+4. Ownership
+   The Software is licensed, not sold. The copyright holder retains all
+   right, title and interest in and to the Software, including all
+   intellectual property rights. No rights are granted other than those
+   expressly stated in this license.
+
+5. No warranty
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. The Software can
+   perform actions on your Horizon environment (such as restarting virtual
+   machines) when You instruct it to; You are responsible for the accounts,
+   privileges and network access You grant it.
+
+6. Limitation of liability
+   IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR
+   OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+   ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+   OTHER DEALINGS IN THE SOFTWARE.
+
+7. Termination
+   This license terminates automatically if You breach any of its terms.
+   Upon termination You must stop using the Software and delete all copies.
+
+8. Third-party components
+   The Software bundles open-source components (including Python, pyvmomi,
+   Chart.js, GridStack and Tabler Icons) under their own licenses, which
+   are listed in THIRD-PARTY-NOTICES.txt in the release package. Nothing in
+   this license limits Your rights under those licenses with respect to
+   those components.
+
+9. Trademarks
+   Omnissa, Horizon, VMware and vSphere are trademarks of their respective
+   owners. The Software is an independent project and is not affiliated
+   with, endorsed by or supported by Omnissa or Broadcom.
+
+10. Governing law
+    This license is governed by the laws of the Netherlands.

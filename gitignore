@@ -1,0 +1,42 @@
+# ---------------------------------------------------------------------------
+# This repository publishes binaries only (GitHub Releases). Source code,
+# build output and runtime data must never be committed. Everything below
+# is a safety net against an accidental `git add .` in the working folder.
+# ---------------------------------------------------------------------------
+
+# Source code (not published)
+*.py
+*.pyc
+__pycache__/
+dashboard.html
+chart.js
+*.spec
+build.bat
+start*.bat
+
+# Build output
+build/
+dist/
+release/
+*.exe
+*.zip
+
+# Runtime data and secrets created by the monitor
+config.json
+horizon_*.json
+logs/
+*.log
+vwm-api-export-*.zip
+vwm-logs-*.zip
+
+# Local tooling
+.venv/
+venv/
+.idea/
+.vscode/
+*.swp
+
+# OS junk
+Thumbs.db
+Desktop.ini
+.DS_Store
