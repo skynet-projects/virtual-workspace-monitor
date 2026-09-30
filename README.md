@@ -48,7 +48,7 @@ It's free to use. The source is not published — you get the binaries from the 
 - **vCenter** (optional) for ESXi host stats, datastores, alarms and GPU. Read-only vSphere role is enough.
 - **Active Directory.** Needed — Horizon only reports user SIDs and machine IDs, and the monitor resolves those to real user and machine names through LDAP. Also used for AD login and group-to-role mapping if you want that. A regular domain account is enough; it only reads.
 
-Network: HTTPS (443) from the monitor to your Connection Servers and vCenter; HTTP on port 8383 from your browser to the monitor. Port is configurable.
+Network: HTTPS (443) from the monitor to your Connection Servers and vCenter; HTTP on port 8383 from your browser to the monitor. The port is configurable (Settings > Connections, `listen_port` in `config.json`, or `--port 8484` on the command line) — handy if 8383 isn't allowed, or to run two environments side by side from two folders.
 
 ## Getting started
 
