@@ -14,7 +14,7 @@ It's free to use. The source is not published — you get the binaries from the 
 
 **Live**
 - Sessions: every desktop and application session with user, machine, pool, protocol, client, gateway route (external via UAG or internal), idle time and duration. Filter, search, click through to a user's history.
-- Infrastructure: Connection Servers, UAGs, ESXi hosts, vCenter alarms, load balancer, certificate expiry, license usage.
+- Infrastructure: Connection Servers, UAGs, ESXi hosts, vCenter alarms, load balancer (only Kemp at this moment), certificate expiry, license usage.
 - Pools and machines: occupancy, error and provisioning state, golden image and snapshot names, agent versions, vGPU profiles, CPU / memory / CPU-ready per machine. Restart, reset or rebuild machines from the dashboard, single or in bulk.
 - GPU: NVIDIA vGPU utilisation and memory per host, with history.
 
