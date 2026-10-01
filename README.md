@@ -54,7 +54,7 @@ Network: HTTPS (443) from the monitor to your Connection Servers and vCenter; HT
 
 1. Download the zip from [Releases](../../releases).
 2. Extract it somewhere, e.g. `C:\Virtual-Workspace-Monitor\`.
-3. Run `HorizonMonitor.exe`. A console window shows the URL, something like `http://192.168.1.10:8383`.
+3. Run the .exe. A console window shows the URL, something like `http://192.168.1.10:8383`.
 4. Open that URL. The setup wizard asks for your Connection Server, the Horizon account and your first admin login. Everything else is optional and lives under Settings.
 
 Keep the console window open (minimised is fine). Closing it stops the monitor.
