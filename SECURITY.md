@@ -6,7 +6,7 @@ Virtual Workspace Monitor holds administrator credentials for Horizon, vCenter a
 
 If you find something, please don't open a public issue. Use **Report a vulnerability** under the Security tab of this repository (GitHub private vulnerability reporting). Only I can see those reports.
 
-Tell me what you found, which version (shown in the dashboard header), and how to reproduce it. I'll confirm within a few days and tell you what I intend to do. This is a spare-time project, so a fix may take a little while; I'll keep you informed, and I'll credit you in the changelog if you want.
+Tell me what you found, which version (shown in the dashboard header), and how to reproduce it. I'll try to confirm within a few days and tell you what I intend to do. This is a spare-time project, so a fix may take a while; I'll keep you informed, and I'll credit you in the changelog if you want.
 
 Please give me a reasonable amount of time to release a fix before you publish anything.
 
