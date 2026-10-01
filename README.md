@@ -101,7 +101,7 @@ Port, CORS origins and history retention are in `config.json`; the manual has th
 
 ## What's not there yet
 
-Things people have asked for, roughly in the order I intend to look at them: HTTPS with your own certificate, multiple vCenters, Cloud Pod Architecture (multi-pod), RDSH farms and published apps, running as a Windows service. I don't have a multi-pod or RDSH environment myself, so those depend on people who do being willing to test.
+Things people have asked for, roughly in the order I intend to look at them: HTTPS with your own certificate, multiple vCenters, Cloud Pod Architecture (multi-pod), RDSH farms and published apps, running as a Windows service (not sure about this). I don't have a multi-pod or RDSH environment myself, so developing these options depends on people who are  willing to test this for me.
 
 If you want something, open an issue and tell me what your environment looks like (Horizon version, pods, RDSH yes/no). No promises on timing — this is a spare-time project.
 
