@@ -6,7 +6,7 @@
 
 An advanced monitoring dashboard for Omnissa Horizon (formerly known as VMware Horizon). One exe, one browser tab. No agents, no database server, no cloud.
 
-I built this because Horizon Reach was discontinued and I wanted something that shows me, at a glance, what my VDI environment is doing: who is logged in, where, through which gateway, which pool is filling up, which certificate is about to expire, and whether anything needs my attention. The Horizon Admin console can not tell you parts of this, but not on one screen and not with history, charts etc..
+I built this because Horizon Reach was discontinued and I wanted something that shows me, at a glance, what my VDI environment is doing: who is logged in, where, through which gateway, which pool is filling up, which certificate is about to expire, and whether anything needs my attention. The Horizon Admin console can tell you parts of this, but not on one screen and not with history, charts etc..
 
 It's free to use. The source is not published — you get the binaries from the [Releases](../../releases) page. See [License](#license) at the bottom.
 
