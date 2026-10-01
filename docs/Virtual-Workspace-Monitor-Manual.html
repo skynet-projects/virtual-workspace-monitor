@@ -146,7 +146,7 @@ footer strong{color:var(--text)}
     <p>Virtual Workspace Monitor is distributed as a single application folder. No Python or other runtime installation is required — everything needed to run it is bundled inside the <code>.exe</code>.</p>
     <div class="tree">
 <span class="d">Horizon-Monitor\</span>
-├── <span class="c">HorizonMonitor.exe</span>          <span style="color:#8899aa">← double-click this to start</span>
+├── <span class="c">VWM.exe</span>          <span style="color:#8899aa">← double-click this to start</span>
 ├── <span class="c">dashboard.html</span>            <span style="color:#8899aa">← the web interface, read once at startup</span>
 ├── <span class="c">chart.js</span>
 ├── <span class="d">fonts\</span>
@@ -158,12 +158,12 @@ footer strong{color:var(--text)}
 ├── <span class="c">horizon_alerts.json</span>        <span style="color:#8899aa">← alert history, last ~500 events</span>
 └── <span class="c">horizon_license_history.json</span> <span style="color:#8899aa">← license usage snapshots, last ~60 days</span>
     </div>
-    <p>All of these except <code>HorizonMonitor.exe</code>, <code>dashboard.html</code>, <code>chart.js</code> and <code>fonts\</code> are created automatically the first time the application needs them — there's nothing to set up by hand. See <a href="#history-files">below</a> for what each one tracks and how long it's kept.</p>
+    <p>All of these except <code>VWM.exe</code>, <code>dashboard.html</code>, <code>chart.js</code> and <code>fonts\</code> are created automatically the first time the application needs them — there's nothing to set up by hand. See <a href="#history-files">below</a> for what each one tracks and how long it's kept.</p>
     <p>Place the whole folder anywhere convenient — a local drive or a network share both work. Nothing needs to be installed to the system; the application is entirely self-contained within this folder.</p>
 
 <h3>First launch</h3>
     <ol class="steps">
-      <li><strong>Start the application.</strong> Double-click <code>HorizonMonitor.exe</code>. A dark console window opens, and your default browser opens automatically to the dashboard.</li>
+      <li><strong>Start the application.</strong> Double-click <code>VWM.exe</code>. A dark console window opens, and your default browser opens automatically to the dashboard.</li>
       <li><strong>Create the admin account.</strong> On first run, you're asked to create the first administrator account. This is a local account stored inside <code>config.json</code> — separate from your Active Directory accounts, and your fallback way in if AD authentication is ever unavailable.</li>
       <li><strong>Follow the Setup Wizard.</strong> Right after creating the account, a 5-step wizard walks you through the core connections — see the full walkthrough below.</li>
       <li><strong>Let it run for a few minutes.</strong> Charts and history graphs need a handful of polling cycles before they show a meaningful trend — this is expected and not a fault.</li>
@@ -229,7 +229,7 @@ footer strong{color:var(--text)}
     </div>
 
     <h3 id="history-files">Data files &amp; retention</h3>
-    <p>Virtual Workspace Monitor keeps its own history independently of Horizon itself, by polling on a schedule (interval configurable in Settings) and appending each result to a small set of local files next to <code>HorizonMonitor.exe</code>. Nothing is sent anywhere else. Each file has a fixed retention window — older entries are automatically trimmed off so the files never grow indefinitely.</p>
+    <p>Virtual Workspace Monitor keeps its own history independently of Horizon itself, by polling on a schedule (interval configurable in Settings) and appending each result to a small set of local files next to <code>VWM.exe</code>. Nothing is sent anywhere else. Each file has a fixed retention window — older entries are automatically trimmed off so the files never grow indefinitely.</p>
     <table class="ktable">
       <tr><th>File</th><th>What it tracks</th><th>Retention</th><th>Feeds into</th></tr>
       <tr><td><code>config.json</code></td><td>Connections, thresholds, branding, users — every setting on the Settings page. Passwords are DPAPI-encrypted, tied to the Windows account and machine that saved them.</td><td>Kept until changed</td><td>Everywhere</td></tr>
@@ -459,15 +459,15 @@ footer strong{color:var(--text)}
     <p>If your vCenter contains hosts that aren't part of the VDI environment (file servers, application servers, etc.), you can filter them out under <strong>Settings → ESXi Specs → VDI Host Filter</strong>. Pick a cluster from the dropdown for a quick selection, or choose "Select hosts manually" for individual control. The filter applies globally — all widgets, charts, background loops, and machine/datastore lists show only data from the selected hosts. Set to "All hosts" to disable the filter.</p>
 
     <h3>Updating to a new version</h3>
-    <p>Replace <code>HorizonMonitor.exe</code> and <code>dashboard.html</code> with the new versions and restart the application. <code>config.json</code>, the <code>horizon_*.json</code> files and the <code>logs\</code> folder are never touched by an update — your configuration and history carry over automatically.</p>
+    <p>Replace <code>VWM.exe</code> and <code>dashboard.html</code> with the new versions and restart the application. <code>config.json</code>, the <code>horizon_*.json</code> files and the <code>logs\</code> folder are never touched by an update — your configuration and history carry over automatically.</p>
 
     <h3>Building from source</h3>
     <p>From the folder containing <code>horizon_monitor.py</code>, <code>dashboard.html</code>, and <code>build.bat</code> (not the folder where the app runs from):</p>
     <ol>
       <li>Run <code>.\build.bat</code> (with the <code>.bat</code> — PowerShell will complain about an unrecognized command without it).</li>
       <li>It asks one question: <em>"Is dit een build om te distribueren naar een andere omgeving...?"</em> Answer <strong>N</strong> to keep your own settings, passwords, and history (a normal update for yourself). Answer <strong>J</strong> for a clean build with none of that — for handing to someone else, who'll see the setup wizard on first launch.</li>
-      <li>The finished, ready-to-run package appears in a new <code>release\</code> folder — <code>HorizonMonitor.exe</code>, <code>dashboard.html</code>, <code>chart.js</code>, <code>handleiding.html</code>, the <code>fonts\</code> folder, and (if you answered N) your own <code>config.json</code> and history files.</li>
-      <li>Copy the whole <code>release\</code> folder to wherever you want to run it, and start <code>HorizonMonitor.exe</code>.</li>
+      <li>The finished, ready-to-run package appears in a new <code>release\</code> folder — <code>VWM.exe</code>, <code>dashboard.html</code>, <code>chart.js</code>, <code>handleiding.html</code>, the <code>fonts\</code> folder, and (if you answered N) your own <code>config.json</code> and history files.</li>
+      <li>Copy the whole <code>release\</code> folder to wherever you want to run it, and start <code>VWM.exe</code>.</li>
     </ol>
 
     <h3>Backing up</h3>
@@ -502,7 +502,7 @@ footer strong{color:var(--text)}
       <li><strong>Charts or history graphs look empty:</strong> normal shortly after first connecting. History needs a few polling cycles to build up before trends appear.</li>
       <li><strong>A connected service shows "Not connected":</strong> re-check the credentials for that specific service under Connections and use its <strong>Test Connection</strong> button — each integration is independent, so one failing doesn't affect the others.</li>
       <li><strong>Signing in keeps bringing you back to the login page:</strong> the server accepted your credentials but the browser didn't keep the session cookie. Open <em>Having trouble signing in?</em> on the login page — it checks whether your browser stores cookies for this address, whether the server answers, whether the clocks agree, and has a Copy button so you can send the result to whoever administers the monitor. Nine times out of ten it's a browser security mode or a group policy that blocks cookies for an IP address, or a proxy that needs an exception for this address and port.</li>
-      <li><strong>"Port 8383 is already in use" at startup:</strong> a second copy of the monitor is already running (check Task Manager), or another program has the port. The message waits for Enter so you can read it before the window closes. <code>listen_port</code> in config.json changes the port, or start with <code>HorizonMonitor.exe --port 8384</code>.</li>
+      <li><strong>"Port 8383 is already in use" at startup:</strong> a second copy of the monitor is already running (check Task Manager), or another program has the port. The message waits for Enter so you can read it before the window closes. <code>listen_port</code> in config.json changes the port, or start with <code>VWM.exe --port 8384</code>.</li>
       <li><strong>The dashboard or login page looks old after an update:</strong> since 1.5.0 both are sent with a no-cache header, so this shouldn't happen anymore. If it does, Ctrl+F5 once.</li>
       <li><strong>Usernames show as SIDs instead of names:</strong> Active Directory isn't connected, or the account couldn't be resolved. Confirm the AD connection under Settings, and use <strong>Restore names</strong> on the Session Log tab to re-resolve any that are missing.</li>
       <li><strong>No email reports arriving:</strong> confirm SMTP is configured and tested under Settings → Reporting, then use "Send daily report now" to send a test immediately and rule out a scheduling issue.</li>
