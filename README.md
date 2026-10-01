@@ -2,6 +2,13 @@
   <img src="docs/screenshots/VWM-dashboard.png" alt="Virtual Workspace Monitor — Dashboard" width="900">
 </p>
 
+![Release](https://img.shields.io/github/v/release/skynet-projects/virtual-workspace-monitor?label=release)
+![Downloads](https://img.shields.io/github/downloads/skynet-projects/virtual-workspace-monitor/total?label=downloads)
+![License](https://img.shields.io/badge/license-freeware-orange)
+![Platform](https://img.shields.io/badge/platform-Windows-blue)
+![Horizon](https://img.shields.io/badge/Omnissa%20Horizon-8.x-5c3ee8)
+![Docs](https://img.shields.io/badge/docs-user%20guide-green?link=https://skynet-projects.github.io/virtual-workspace-monitor/)
+
 # Virtual Workspace Monitor
 
 An advanced monitoring dashboard for Omnissa Horizon (formerly known as VMware Horizon). One exe, one browser tab. No agents, no database server, no cloud.
