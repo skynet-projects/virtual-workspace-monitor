@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/screenshots/VVM-dashboard.png" alt="Virtual Workspace Monitor — Dashboard" width="900">
+  <img src="docs/screenshots/VWM-dashboard.png" alt="Virtual Workspace Monitor — Dashboard" width="900">
 </p>
 
 # Virtual Workspace Monitor
