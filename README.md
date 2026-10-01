@@ -34,11 +34,11 @@ It's free to use. The source is not published — you get the binaries from the 
 
 | Dashboard | Sessions |
 |---|---|
-| ![Dashboard](docs/screenshots/VVM-dashboard.png) | ![Sessions](docs/screenshots/VVM-sessions.png) |
+| ![Dashboard](docs/screenshots/VWM-dashboard.png) | ![Sessions](docs/screenshots/VWM-sessions.png) |
 
 | Infrastructure | Charts |
 |---|---|
-| ![Infrastructure](docs/screenshots/VVM-infrastructure.png) | ![Charts](docs/screenshots/VVM-charts.png) |
+| ![Infrastructure](docs/screenshots/VWM-infrastructure.png) | ![Charts](docs/screenshots/VWM-charts.png) |
 
 ## What you need
 
