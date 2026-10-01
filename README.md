@@ -61,7 +61,7 @@ Keep the console window open (minimised is fine). Closing it stops the monitor.
 
 The full manual — setup wizard, every tab, alerts, technical notes — is [here](https://skynet-projects.github.io/virtual-workspace-monitor/Virtual-Workspace-Monitor-Manual.html) (also included in every release zip).
 
-**Updating:** stop, replace the files from the new zip, start again. Config and history stay where they are. Settings > Changelog shows what changed.
+**Updating:** stop, replace the files from the new zip, start again. Config and history stay where they are. [CHANGELOG.md](CHANGELOG.md) (also in the app under Settings > Changelog) shows what changed.
 
 ## Your data
 
