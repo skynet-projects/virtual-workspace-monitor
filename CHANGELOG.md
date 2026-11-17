@@ -2,32 +2,79 @@
 
 All notable changes to Virtual Workspace Monitor. The same list is shown in the app under Settings > Changelog.
 
+## 1.6.0 — 2026-11-16
+
+- Added — DEM Profile Health page: scans each user's FlexEngine.log (sync + async) and optionally the user's profile Archive folder; shows logon errors, slow sections, profile size per user and trends over time
+- Added — Direct SMB to the DEM share via smbprotocol (bypasses Windows' SMB client, resolves error 1312 on servers with a strict SMB policy); Settings > DEM > Share connection > Advanced offers toggles for Direct SMB and Signing, with graceful fallback to the legacy route if smbprotocol is not bundled
+- Added — Test credentials in Share connection now shows the negotiated SMB dialect, encryption cipher and signing requirement, so you can verify at a glance what level the server enforces
+- Changed — machine popup session chart defaults to 1h at real-time (20-second) resolution, matching vCenter's Real-time view, instead of 5-minute averages; a 1h/8h toggle switches between real-time and the longer, averaged view
+- Changed — build process now uses a self-compiled PyInstaller bootloader, disables UPX compression and embeds publisher/product/copyright metadata plus a VWM icon — reduces generic antivirus false-positive detections on the .exe
+- Fixed — logon time now shows the perceived logon (profile, GPO, shell, agent steps) instead of Horizon's wall-clock total, so a slow client or a cold instant clone no longer looks like a multi-minute logon; a one-time migration recalculates old values
+- Fixed — Pool sizing read the live clone count instead of the configured maximum, so instant-clone pools showed too few machines; it now reads max_number_of_machines
+- Fixed — Top Users disconnected could stay empty and now also counts currently-disconnected (live) sessions, not only ones closed in the session log
+- Fixed — the session performance chart put network (Mbit/s) at the same height as CPU/memory %, making low traffic look like 100%; network now has its own labelled right axis
+- Fixed — the audit log recorded a double entry for a double-submitted login; identical actions within a few seconds are now logged once
+- Fixed — snooze and maintenance mode now also suppress the alert-engine e-mails; External vs Internal per pool has a legend; the per-pool daily breakdown covers the full period again
+- Added — large-environment support: higher timeouts, pagination and caching so thousands of machines no longer stall the monitor; a simulation mode (--simulate) to test against
+- Added — Audit Log tab: the monitor's own audit trail (logins, config changes, user management) with user, IP, filters and CSV export (admins only)
+- Added — Settings > System Health: a readiness check (what works with the configured accounts and what to fix), monitor self-stats (memory, file sizes, disk free) and last poll-cycle duration
+- Added — a daily log file (logs\vwm-YYYY-MM-DD.log) and a Support export with masking; configurable listen port (Settings, config.json or --port)
+- Changed — console, log file, API docs and e-mail reports are fully in English
+- Added — mandatory two-factor authentication, set separately for local and Active Directory accounts; users without 2FA enrol at next login (QR generated locally, no external service), with recovery codes, per-user reset and a command-line break-glass reset
+- Added — Clear buttons for stored secrets (SMTP, Kemp API key, Teams/Slack webhooks)
+- Changed — Charts renamed Live Charts and moved to the Live section; Pool Usage moved to History; the datastore-capacity and licence-usage bars were removed from the dashboard (they said little for instant clones / named-user licensing)
+- Added — click a machine, pool or user name in a session/machine/pool popup to jump straight to that detail, with a Back link; detail popups can be dragged and resized
+- Added — At a Glance flags offline Connection Servers / UAG gateways and shows a recent-change line so cause sits next to effect
+- Changed — Pools tab: each pool is its own card with search, filter and sort (name, busiest, worst score, largest); healthy pools are no longer tinted, only ones needing attention
+- Added — a dashboard / kiosk mode (fullscreen, stays signed in, auto-refresh) that is read-only via the viewer role — suitable for a NOC/SOC wall display
+- Added — History: logon time per pool (golden-image markers and phase breakdown), datastore usage over time with a reaches-90% estimate, sessions per Connection Server / UAG over time, and a Changes card (pool size, power policy, enable/disable, CS/UAG versions)
+- Added — Maintenance windows as their own History card: best window on top, then a 24-hour-per-weekday strip (green quiet, red busy)
+- Added — User Activity: unique-user counts over 30 / 90 / 365 days for named-user licence audits; Export daily CSV (whole daily archive, one row per pool per day); optional Dashboard URL for deep links in alert e-mails
+- Added — Top Users — disconnected (who leaves sessions disconnected most often), with a per-user detail popup; Show all on the Top Users cards and consistent user avatars throughout
+- Added — machine/session popup: a network tile and a CPU/memory/network timeline over the session from vCenter, with machine and session actions matching Horizon Console (Recover, Maintenance, Restart, Reset, Rebuild, Remove) and the connected duration in the status tile
+- Added — a visual HTML report over a period (last month / quarter / 30d / 90d / custom) with a session-trend chart, availability, pool capacity, licence, infrastructure, top users, changes and alerts, in your branding, with selectable sections
+- Added — Slack webhook (critical alerts, alongside Teams) and a read-only /api/prtg metrics endpoint in PRTG custom-sensor JSON, also usable by Grafana/Zabbix
+- Added — an opt-in update check against GitHub with its own Version & updates tab, and the version number on the login screen
+- Added — load-balancer monitoring (Kemp): a new alert when it is unreachable or a virtual service is down; snooze covers vCenter alarms and the load balancer; a new alert type for red vCenter alarms
+- Fixed — a failed sign-in (wrong username or password) is now logged as "failed" in the audit log instead of "ok", so failed login attempts are visible
+- Fixed — a session that was disconnected and then logged off by the system now shows "Logged off (was disconnected)" instead of still reading "Disconnected"; the session detail adds a timeline (connected → disconnected → logged off) with an evidence-based reason from the pool's disconnect-logoff policy
+- Changed — the Session Log is now an event list: each session shows its Logged on / Disconnected / Logged off events on their own line with the time, filterable by event type
+- Fixed — the user activity popup mixed two periods (tiles over all time, list over 24h); it now uses one consistent 30-day window everywhere
+- Changed — the Slowest logons card shows the selected period in its title (last 24 hours / 7 days / 30 days) so it is clear which window you are looking at
+- Changed — the Active Directory 2FA texts were corrected: 2FA for AD accounts is handled by the monitor itself (set up at sign-in), not by the domain; an AD user now sees their real 2FA state
+- Added — vCenter host card: CPU Ready per host (the actual vCPU wait) next to the vCPU overcommit ratio, with a combined label (Normal / Acceptable / Some CPU contention / Overcommit hurting); no extra vCenter calls
+- Added — other monitoring tools (PRTG, Grafana, Zabbix) can read the key figures from /api/prtg; worded more clearly
+
+## 1.5.1 — 2026-10-15
+
+- Fixed — Large environments: Horizon calls time out less (8 → 30 s), big lists are fetched in pages and cached; Pools page no longer crashes with 'machines.filter is not a function'
+- Fixed — When Horizon does not answer, pages show empty with a red banner instead of demo data
+- Fixed — Disconnected time is measured from the moment the session disconnected; a ~ marks an estimate for sessions already disconnected at startup
+- Fixed — User Activity 'Last seen' shows the last activity, not the session start
+- Fixed — Session Log recorded every ended session as 'Log off'; 'Disconnect' is recorded again
+- Fixed — Pools tab stayed on 'Loading…' with many pools (entitlement lookups)
+- Fixed — E-mail: STARTTLS added as a third security mode; clearer error when a relay offers no AUTH
+- Fixed — Agent Versions card stayed empty when two versions had the same count
+- Fixed — Charts no longer draw one y-axis tick per session in large environments
+- Fixed — A missing chart.js no longer breaks whole tabs; early localhost request (CORS error) removed
+- Fixed — Less disk I/O: history downsampling runs with the 30-minute write; session log is written every 5 minutes
+- Added — Clear buttons for SMTP user/password, Kemp API key and Teams webhook
+- Added — System Health shows how long the last poll cycle took
+
 ## 1.5.0 — 2026-10-01
 
-- 🔴 CRITICAL FIX — session detail popup could show the wrong user: the Detail button in Disconnected Sessions, Long Idle Sessions, Top 5 Longest Connected and the filtered Sessions table passed a position in its own sorted/filtered list, but the popup looked that position up in the full session list. With filters or sorting active this opened another user's session, including its Disconnect / Log off / Restart buttons. The popup now looks sessions up by session id and machine id only
-- 🟠 FIX — the poll cycle (history, alert engine, session log, activity feed) only ran while a browser had the dashboard open, so no alert e-mails were sent when nobody was logged in and history had gaps at night and in weekends. It now runs on the server every 60 seconds; multiple open tabs no longer trigger multiple cycles
-- 🟠 FIX — logon time was never measured: the session list does not contain it, so 'Avg login speed' always showed 0s. Logon segments are now fetched once per new session via the Help Desk API (total, profile load, GPO, shell load) and cached
-- 🟠 FIX — the daily history archive was only written when the main history overflowed, which the downsampling prevented; anything older than 30 days was silently lost. A nightly rollup now summarises every completed day (totals, per-pool peak/average sessions and machines on, % of day a pool was full, per-host memory/CPU peaks, logon time per pool, license peak, coverage) and the archive is backfilled on first start
-- 🟠 FIX — alert e-mails from the alert engine had a broken logo; all mail now goes through the same sender as the reports
-- 🟠 FIX — Dashboard health strip showed 'Connection Servers 0/3' (Horizon's health-metrics counts decommissioned entries and flags expiring certificates); it now shows the real online count with Horizon's state in a tooltip
-- 🟠 FIX — the login page and dashboard could be served from browser cache after an update; both are sent with Cache-Control: no-store
-- 🟠 FIX — the listen port was fixed at 8383 despite the manual; it is now configurable (Settings > Connections, listen_port in config.json, or --port on the command line)
-- SECURITY FIX — /api/config/load returned most of config.json to every logged-in user, including viewers: the Kemp API key, the Teams webhook URL and the local user list with password hashes and encrypted TOTP secrets. Secrets are no longer sent to the browser at all (fields show 'configured' instead) and non-admins receive only the settings the dashboard needs
-- History tab: new 'Logon time per pool' card — one line per pool over the selected period, markers on the days a pool's golden image or snapshot changed, phase breakdown per pool (profile / GPO / shell, p90) and the five slowest logons. Golden image changes are now logged
-- History tab: new 'Pool sizing & license' card — per pool machines vs peak, p95 of daily peaks, days full and headroom; license concurrent-connection peak, p95, trend and headroom against the licensed count you enter under Settings > License
-- History tab: 'Availability (Uptime)' gained an availability report from the daily archive — CS / UAG / vCenter %, time without a free machine per pool, monitor coverage, per month
-- History tab: Peak Usage per Day shades days on which the monitor measured less than 80% of the day; GPU Trend and Machines Active per Pool follow the global period selector (own selectors removed); the pool-machines card shows daily peak with the average in the tooltip and explains when they are equal
-- More machine and session actions, matching the Horizon Console: Recover, Enter / Exit maintenance mode (single and bulk), Remove (admin only, with 'delete from disk' and 'force log off' options and the machine name typed to confirm), Send message to a session (info / warning / error) — from the session popup, the machine popups, and 'Message all' for the filtered list on the Sessions tab. Horizon's own error text is shown when an action fails
-- Session popup shows the logon timeline; Session Log has a sortable Logon column with the phase breakdown in the tooltip
-- Alerts: new alert type for red (critical) vCenter alarms with e-mail (Settings > Thresholds & Alerts); At a Glance and the alert engine share one definition of machine error states — Deleting / Maintenance / Already used are shown as 'in a transitional state' without a Restart button and never alert
-- Log file: everything printed to the console is also written to logs\vwm-YYYY-MM-DD.log (JSON Lines), rotated daily, kept 14 days, downloadable from Settings > System Health
-- Support export (Settings > System Health, admin only): raw responses of ~27 Horizon REST endpoints in one zip for troubleshooting, with user/machine/server/gateway names, SIDs, IPs, DNS names, AD containers and license keys masked; a 'strict' option also masks pool, farm, application and entitlement names. Nothing is sent automatically
-- Login page: 'Having trouble signing in?' diagnostics (cookie test, server reachability, version, clock difference, Copy button); a clear explanation instead of a redirect loop when the browser does not keep the session cookie
-- Logins survive a restart of the monitor (sessions are stored hashed next to the exe)
-- Startup: a clear message instead of a traceback when the port is already in use; the manual is served by the monitor itself at /manual (sidebar and login page), from the exe folder or a manual\ subfolder
-- Large environments: Sessions table shows the first 100, Machines table the first 200 and Active Alerts the first 50, each with a 'Show all' link; filters still search the full set
-- System Health shows the poll cycle as its own background loop; vCenter alarm lookups are cached for 90 seconds
-- Remaining Dutch labels replaced by English
+- 🔴 CRITICAL FIX — Session detail popup could open another user's session when a list was filtered or sorted; lookup is now by session id
+- SECURITY FIX — /api/config/load exposed the Kemp API key, Teams webhook and local user hashes to every logged-in user; secrets are no longer sent to the browser
+- Fixed — Alerts, history and session log only ran while a browser had the dashboard open; they now run on the server every 60 s
+- Fixed — Logon time was never measured ('Avg login speed' showed 0s); it is now fetched per new session via the Help Desk API
+- Fixed — The daily history archive was never written; a nightly rollup now keeps per-day totals, per-pool and per-host figures for 10 years
+- Fixed — Alert e-mails had a broken logo; Dashboard showed 'Connection Servers 0/3'; login page and dashboard could be served from browser cache; listen port was fixed at 8383
+- Added — History: 'Logon time per pool' (with golden-image markers and phase breakdown), 'Pool sizing & license', availability report under Uptime
+- Added — Machine and session actions matching Horizon Console: Recover, Maintenance mode (also bulk), Remove (admin), Send message, 'Message all'
+- Added — New alert type for red vCenter alarms; machines in Deleting/Maintenance are shown as 'transitional' and never alert
+- Added — Daily log file (logs\vwm-YYYY-MM-DD.log), Support export with masking (and a strict mode), login diagnostics on the login page, logins survive a restart, manual at /manual
+- Added — Listen port configurable (Settings, config.json or --port); Sessions/Machines/Alerts lists capped with 'Show all'
+- Changed — Console, log file, API docs and e-mail reports fully in English
 
 ## 1.4.0 — 2026-09-25
 

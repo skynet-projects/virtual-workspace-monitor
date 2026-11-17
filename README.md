@@ -18,6 +18,8 @@ I built this because Horizon Reach was discontinued and I wanted something that 
 
 It's free to use. The source is not published — you get the binaries from the [Releases](https://github.com/skynet-projects/virtual-workspace-monitor/releases) page. See [License](#-license) at the bottom.
 
+> 🆕 **New in 1.6.0:** DEM Profile Health. [Full changelog](https://github.com/skynet-projects/virtual-workspace-monitor/blob/main/CHANGELOG.md) · [Download](https://github.com/skynet-projects/virtual-workspace-monitor/releases/latest)
+
 ## ✨ What it does
 
 **📊 Live Dashboard**
@@ -26,6 +28,7 @@ It's free to use. The source is not published — you get the binaries from the 
 - 🏗️ **Infrastructure**: Connection Servers, UAGs, ESXi hosts, vCenter alarms, load balancer (only Kemp at this moment), certificate expiry, license usage.
 - 💻 **Pools and machines**: Occupancy, error and provisioning state, golden image and snapshot names, agent versions, vGPU profiles, CPU / memory / CPU-ready per machine. Restart, reset or rebuild machines from the dashboard, single or in bulk.
 - 🎮 **GPU**: NVIDIA vGPU utilisation and memory per host, with history.
+- 🩺 **DEM Profile Health**: Per-user logon time (sync + async), profile size and error entries from `FlexEngine.log` on your Omnissa DEM profile share, with a 30-day trend per user. Reads the share directly over SMB — no agent, no DEM changes.
 
 **📈 History and analysis**
 
@@ -66,14 +69,14 @@ It's free to use. The source is not published — you get the binaries from the 
 
 1. ⬇️ Download the zip from [Releases](https://github.com/skynet-projects/virtual-workspace-monitor/releases).
 2. 📂 Extract it somewhere, e.g. `C:\Virtual-Workspace-Monitor\`.
-3. ▶️ Run `VWM.exe`. A console window shows the URL, something like `http://122.168.1.10:8383`.
+3. ▶️ Run `VWM.exe`. A console window shows the URL, something like `http://192.168.1.10:8383`.
 4. 🧙 Open that URL. The setup wizard asks for your Connection Server, the Horizon account and your first admin login. Everything else is optional and lives under Settings.
 
 > ⚠️ Keep the console window open (minimised is fine). Closing it stops the monitor.
 
 The full manual — setup wizard, every tab, alerts, technical notes — is [here](https://skynet-projects.github.io/virtual-workspace-monitor/Virtual-Workspace-Monitor-Manual.html) (also included in every release zip).
 
-**🔄 Updating:** stop, replace the files from the new zip, start again. Config and history stay where they are. [CHANGELOG.md](https://github.com/skynet-projects/virtual-workspace-monitor/blob/main/CHANGELOG.md) (also in the app under Settings > Changelog) shows what changed.
+**🔄 Updating:** stop, replace the files from the new zip, start again. Config and history stay where they are. [CHANGELOG.md](https://github.com/skynet-projects/virtual-workspace-monitor/blob/main/CHANGELOG.md) (also in the app under Settings > Changelog) shows what changed. *Upgrading from 1.5.x: the executable is renamed from `HorizonMonitor.exe` to `VWM.exe` — delete the old one after the upgrade.*
 
 ## 🔒 Your data
 
@@ -109,6 +112,7 @@ Port, CORS origins and history retention are in `config.json`; the manual has th
 - 🚫 **"Port 8383 is already in use" at startup.** There's already one running (check Task Manager), or something else has the port. `listen_port` in `config.json` changes it.
 - 🔴 **No data, or Horizon shows red.** Check Settings > Connections and the log in `logs\`. Usually it's an account without admin rights, or the REST API being disabled on the Connection Server.
 - 🆔 **Users show up as SIDs, machines as IDs.** The AD connection isn't working. Check the LDAP settings and whether the account can read the domain.
+- 🛡️ **Antivirus flags `VWM.exe` as suspicious.** PyInstaller executables are a known trigger for generic antivirus heuristics; expect 3-5 engines on VirusTotal to flag it (typically ML-based detections from Microsoft Defender, CrowdStrike Falcon, Bkav, SecureAge). These are false positives. The build chain applies every mitigation short of Authenticode code signing — a self-compiled bootloader, no UPX compression, embedded publisher metadata and a dedicated icon. If your organisation blocks the executable, submit the hash through Microsoft's [file submission portal](https://www.microsoft.com/en-us/wdsi/filesubmission) and (for Falcon) your reseller's false-positive form.
 - 🐛 **Anything else:** grab the logs (Settings > System Health) and open an [issue](https://github.com/skynet-projects/virtual-workspace-monitor/issues). Mention the version from the header and your Horizon version.
 
 ## 🗺️ What's not there yet
